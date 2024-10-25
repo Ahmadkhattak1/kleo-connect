@@ -97,7 +97,7 @@ function Profile() {
       .map((activity: { label: any; }) => activity.label)
       .join(", ");
     return `Check out my Activity! My top 3 activities are ${top3Activities}. My current kleo points are ${userData.kleo_points || 0}.
-     Create your profile and get Kleo points! @kleo_network #KLEO ${imageUrl} `; // Add a space after URL
+Create your profile and get Kleo points! @kleo_network #KLEO ${imageUrl}`;
   };
 
   const handleShareGraphClick = async () => {
