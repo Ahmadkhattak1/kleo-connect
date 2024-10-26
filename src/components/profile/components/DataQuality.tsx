@@ -6,7 +6,7 @@ const RadarChartOptions = {
     maintainAspectRatio: false, // Allow height to be adjusted
     responsive: true, // Makes the chart responsive
     layout: {
-        padding: 20, // Add padding around the chart
+        padding: 35
     },
     scales: {
         r: {
