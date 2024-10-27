@@ -82,13 +82,11 @@ function Profile() {
         const pathname = window.location.pathname;
         let urlAddress = pathname.split('/profile/')[1]; // Address from URL
         urlAddress = String(userAddress).replace('/', '');
-        console.log('Pathname : ', pathname, ' and ', urlAddress);
         const localStorageAddress = localStorage.getItem('address');
 
         // Call signIn to get the address from the extension
         const result = await (window as any).signIn();
         const extensionAddress = result.address;
-        console.log('Extension Address : ', extensionAddress);
 
         // Check if all three addresses match
         if (
