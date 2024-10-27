@@ -19,6 +19,7 @@ import LeaderBoardBanner from './components/LeaderBoardBanner'
 import Navbar, { PAGE_NAMES } from './components/Navbar'
 import useFetch from '../common/hooks/useFetch'
 import { Method } from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 interface UserGraphResponse {
   processing?: boolean;
@@ -49,8 +50,62 @@ ChartJS.register(
 )
 
 function Profile() {
-  // Get the user Data.
-  const userAddress = localStorage.getItem('address');
+  const [userAddress, setUserAddress] = useState<string | null>(localStorage.getItem('address'));
+  const [isKleoConnectReady, setIsKleoConnectReady] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkKleoConnect = () => {
+      // Poll for the availability of window.kleoConnect
+      if ((window as any).kleoConnect) {
+        setIsKleoConnectReady(true);
+        console.log('kleoConnect is ready:', (window as any).kleoConnect);
+
+        // Assign signIn method if not already assigned
+        if (!(window as any).signIn) {
+          (window as any).signIn = (window as any).kleoConnect.signIn;
+        }
+      } else {
+        console.log('Waiting for kleoConnect...');
+        setTimeout(checkKleoConnect, 100); // Poll every 100ms
+      }
+    };
+
+    checkKleoConnect(); // Start polling
+  }, []);
+
+  useEffect(() => {
+    if (!isKleoConnectReady) return; // Wait until kleoConnect is ready
+
+    const validateAddresses = async () => {
+      try {
+        const pathname = window.location.pathname;
+        const urlAddress = pathname.split('/profile/')[1]; // Address from URL
+        const localStorageAddress = localStorage.getItem('address');
+
+        // Call signIn to get the address from the extension
+        const result = await (window as any).signIn();
+        const extensionAddress = result.address;
+
+        // Check if all three addresses match
+        if (
+          urlAddress !== localStorageAddress ||
+          urlAddress !== extensionAddress ||
+          localStorageAddress !== extensionAddress
+        ) {
+          navigate('/signup/0'); // Redirect to signup if addresses don't match
+        } else {
+          setUserAddress(localStorageAddress);
+        }
+      } catch (error) {
+        console.error('Error during signIn or address check:', error);
+        navigate('/signup/0'); // Redirect on error
+      }
+    };
+
+    validateAddresses(); // Call the validation function
+  }, [isKleoConnectReady]);
+
   const GET_USER_PATH = `user/get-user/${userAddress}`;
   const UPLOAD_IMGUR_ENDPOINT = 'user/upload_activity_chart';
   const GET_USER_GRAPH = `user/get-user-graph/${userAddress || ''}`;
