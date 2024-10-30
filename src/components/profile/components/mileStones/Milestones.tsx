@@ -49,7 +49,7 @@ const Milestones = ({ mileStones, handleShareGraph, isGraphAvailable }: Mileston
           label="Follow us on Twitter"
           icon={XLogoImage}
           onClick={handleFollowClick}
-          xp={120}
+          xp={10}
           completed={mileStones.followed_on_twitter as boolean}
         />
         {(mileStones.tweet_activity_graph || isGraphAvailable) && (
@@ -57,7 +57,7 @@ const Milestones = ({ mileStones, handleShareGraph, isGraphAvailable }: Mileston
             label="Tweet your activity graph"
             icon={XLogoImage}
             onClick={handleShareGraphClick}
-            xp={120}
+            xp={100}
             completed={mileStones.tweet_activity_graph as boolean}
           />
         )}
@@ -66,12 +66,12 @@ const Milestones = ({ mileStones, handleShareGraph, isGraphAvailable }: Mileston
         <ProgressMilestone
           label="Own and protect 200 MB of data."
           progress={convertDataSizeToPercentage(Number(mileStones.data_owned) || 0).progress}
-          xp={120}
+          xp={200}
         />
         <ProgressMilestone
           label="Refer 10 friends to join Kleo Network"
           progress={convertReferredCountsToPercentage(Number(mileStones.referred_count) || 0).progress}
-          xp={120}
+          xp={200}
         />
       </ul>
     </div>
