@@ -10,22 +10,28 @@ const LeaderBoardBanner = () => {
             <div className="absolute right-1">
                 <BigStar />
             </div>
-            <div className="absolute right-32 top-0">
+            <div className="absolute right-32 z-1 top-0">
                 <MediumStar />
             </div>
-            <div className="absolute right-52 bottom-0">
+            <div className="absolute right-52 z-1 bottom-0">
                 <SmallStar />
             </div>
-            <div className="z-50">
-                <h3 className="text-[28px] mb-2 font-semibold">Leaderboard</h3>
-                <p className="text-sm text-gray-600 mb-4 font-inter">
-                    Keep up with the team to receive rewards!
+            <div className="z-5">
+                <h3 className="text-[28px] mb-2 font-semibold">What's new?</h3>
+                <p className="text-md text-gray-600 mb-2 font-inter">
+                    Unlock exclusive voting rights and shape the future of data ownership with Kleo! <br />   Don't miss out on this chance to make an impact – support Kleo and claim your place in the future of decentralized data!
+
+                    <p className="mt-3 z-[900]">
+                        Cast your vote in the <b>GG22 Gitcoin Grants</b>
+
+                    </p>
                 </p>
             </div>
-            <button
-                className="bg-[#7f56d9] text-white py-2 px-4 rounded-full mt-10 w-fit">
-                Know More
-            </button>
+            <a href="https://explorer.gitcoin.co/#/round/42161/610/49"
+                target="_blank"
+                className="bg-[#7f56d9] text-white py-2 px-4 rounded-full w-fit">
+                Contribute
+            </a>
         </div>
     )
 }
