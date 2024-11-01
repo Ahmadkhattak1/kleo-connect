@@ -60,18 +60,23 @@ const canUpload = () => {
   return true;
 };
 
-const setLastUploadTime = () => {
+const cacheImageUrl = (url: string) => {
+  localStorage.setItem('cachedImageUrl', url);
   localStorage.setItem('lastUploadTime', Date.now().toString());
 };
 
-const showToastError = (message: string) => {
-  const toast = document.getElementById('toast-error');
-  const errorText = document.getElementById('error-text');
+const getCachedImageUrl = () => {
+  const cachedUrl = localStorage.getItem('cachedImageUrl');
+  const lastUploadTime = localStorage.getItem('lastUploadTime');
 
-  if (toast && errorText) {
-    errorText.innerText = message;
-    toast.classList.remove('hidden');
+  if (cachedUrl && lastUploadTime) {
+    const timeSinceLastUpload = Date.now() - parseInt(lastUploadTime);
+    if (timeSinceLastUpload <= ONE_HOUR_IN_MS) {
+      return cachedUrl;
+    }
   }
+
+  return null;
 };
 
 function Profile() {
@@ -183,15 +188,14 @@ Create your profile and get Kleo points! @kleo_network #KLEO ${imageUrl}`;
   };
 
   const handleShareGraphClick = async () => {
-    // Check if a request is already being processed
-    if (isRequestInProgress) {
-      showToastError('Wait, we are processing your previous graph request...');
-      return;
-    }
+    // First, check if a valid cached URL exists
+    const cachedUrl = getCachedImageUrl();
 
-    // Check if the user can upload (within the 1-hour window)
-    if (!canUpload()) {
-      showToastError('You can only upload a graph once per hour. Please try again later.');
+    if (cachedUrl) {
+      // console.log('Using cached URL:', cachedUrl);
+      const tweetText = constructTweetText(cachedUrl);
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+      window.open(twitterUrl, '_blank');
       return;
     }
 
@@ -218,10 +222,10 @@ Create your profile and get Kleo points! @kleo_network #KLEO ${imageUrl}`;
             window.open(twitterUrl, '_blank');
 
             // Set the last upload time after a successful response
-            setLastUploadTime();
+            cacheImageUrl(data.url);
           } else {
             console.error('Failed to upload image.');
-            showToastError('Failed to upload the image. Please try again.');
+            console.log('Failed to upload the image. Please try again.');
           }
           isRequestInProgress = false;
         }
@@ -230,7 +234,7 @@ Create your profile and get Kleo points! @kleo_network #KLEO ${imageUrl}`;
       uploadImageFetch(UPLOAD_IMGUR_ENDPOINT, options);
     } catch (error) {
       console.error('Error uploading image:', error);
-      showToastError('An error occurred while uploading graph. Please try again later.');
+      console.log('An error occurred while uploading graph. Please try again later.');
       isRequestInProgress = false;
     }
   };
@@ -378,29 +382,6 @@ Create your profile and get Kleo points! @kleo_network #KLEO ${imageUrl}`;
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Toast Error Notification */}
-      <div id="toast-error" className="fixed bottom-5 right-5 flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 hidden" role="alert">
-        <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
-          <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z" />
-          </svg>
-          <span className="sr-only">Error icon</span>
-        </div>
-        <div id='error-text' className="ms-3 text-sm font-normal">Item has been deleted.</div>
-        <button
-          type="button"
-          className="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-          data-dismiss-target="#toast-error"
-          aria-label="Close"
-          onClick={() => document.getElementById('toast-error')?.classList.add('hidden')}
-        >
-          <span className="sr-only">Close</span>
-          <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-          </svg>
-        </button>
       </div>
     </div>
   );
