@@ -23,9 +23,9 @@ type FetchResponse<T> = {
   error: any
   fetchData: (url: string, options?: Options<T>) => void
 }
-export const baseUrl = //'http://127.0.0.1:5001/api/v2/core' || 
-'https://api.kleo.network/api/v2/core'
-  
+export const baseUrl = 'https://fastapi.kleo.network/api/v1'
+// export const baseUrl = 'http://127.0.0.1:8000/api/v1'
+
 export enum FetchStatus {
   IDLE = 'idle',
   LOADING = 'loading',
