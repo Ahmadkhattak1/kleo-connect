@@ -6,7 +6,7 @@ import { UserData } from './common/constants/SignupData'
 import Profile from './pages/profile'
 
 
-import { MyData } from './pages/profile/components/MyData'
+import { MyData } from './pages/MyData/MyData'
 import useFetch from './common/hooks/useFetch'
 function App(): ReactElement {
   const emptyStringArray: string[] = []
