@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../../assets/images/nameLogo.svg'
+import { ReactComponent as Logo } from '../../assets/images/nameLogo.svg'
 
 export enum PAGE_NAMES {
   PROFILE = 'PROFILE',

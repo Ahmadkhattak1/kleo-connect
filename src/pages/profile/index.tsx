@@ -16,7 +16,7 @@ import Referrals from './components/Referrals'
 import Leaderboard from './components/Leaderboard'
 import Privacy from './components/Privacy'
 import LeaderBoardBanner from './components/LeaderBoardBanner'
-import Navbar, { PAGE_NAMES } from './components/Navbar'
+import Navbar, { PAGE_NAMES } from '../../common/components/Navbar'
 import { Method } from 'axios'
 import { useNavigate } from 'react-router-dom';
 import useFetch from '../../common/hooks/useFetch'

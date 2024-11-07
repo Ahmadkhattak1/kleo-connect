@@ -1,4 +1,4 @@
-import Navbar, { PAGE_NAMES } from "./Navbar";
+import Navbar, { PAGE_NAMES } from "../../../common/components/Navbar";
 import { ReactComponent as SpaceCat } from '../../../assets/myData/spaceCat.svg';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";

@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from 'react'
-import { UserData } from '../../constants/SignupData'
+import { UserData } from '../../../common/constants/SignupData'
 import { ReactComponent as Explorer } from '../../../assets/images/claim.svg'
 import { ReactComponent as ThirdParty } from '../../../assets/images/third.svg'
 import { ReactComponent as Airdrop } from '../../../assets/images/airdrop.svg'

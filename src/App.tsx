@@ -1,8 +1,8 @@
 import { ReactElement, useEffect, useState } from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
-import PrivacyPolicy from './pages/home/sections/PrivacyPolicy'
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy'
 import SignUp from './pages/signup'
-import { UserData } from './pages/constants/SignupData'
+import { UserData } from './common/constants/SignupData'
 import Settings from './pages/profile/Settings'
 import Profile from './pages/profile'
 
