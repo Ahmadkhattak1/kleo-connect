@@ -3,10 +3,11 @@ import { UserData } from '../../constants/SignupData'
 import { ReactComponent as Explorer } from '../../../assets/images/claim.svg'
 import { ReactComponent as ThirdParty } from '../../../assets/images/third.svg'
 import { ReactComponent as Airdrop } from '../../../assets/images/airdrop.svg'
-import useFetch from '../../common/hooks/useFetch'
-import { fullUserData } from '../../common/interface'
+
 import { contract_address, contractABI } from "../../contracts/mint";
-import config from '../../common/config'
+import useFetch from '../../../common/hooks/useFetch'
+import { fullUserData } from '../../../common/interface'
+import config from '../../../common/config'
 
 interface User {
   user: UserData

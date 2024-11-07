@@ -1,4 +1,5 @@
-import { UserData } from '../common/interface'
+
+import { UserData } from '../../common/interface'
 import Onboarding from '../profile/Onboarding/Authentication'
 import { useNavigate } from 'react-router-dom'
 

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { ReactComponent as Kleo } from '../../../../assets/images/kleoLogo.svg'
 import { ReactComponent as Tick } from '../../../../assets/images/check.svg'
-import Alert from '../../../common/Alerts'
 import { ReactComponent as AlertIcon } from '../../../../assets/images/alert.svg'
 import { useNavigate } from 'react-router-dom'
-import useFetch from '../../../common/hooks/useFetch'
 import { UserData } from '../../../constants/SignupData'
+import useFetch from '../../../../common/hooks/useFetch'
+import Alert from '../../../../common/Alerts'
 
 enum PluginState {
   CHECKING,

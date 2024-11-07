@@ -4,7 +4,7 @@ import { ReactComponent as Copy } from '../../../assets/dashboard/Copy.svg'
 import { ReactComponent as GroupPeople } from '../../../assets/dashboard/GroupPeople.svg'
 import { ReactComponent as EmptyData } from '../../../assets/dashboard/EmptyData.svg'
 import ReferalTable from './ReferalTable'
-import useFetch from '../../common/hooks/useFetch'
+import useFetch from '../../../common/hooks/useFetch'
 
 interface ReferralsProps {
   userAddress: string;

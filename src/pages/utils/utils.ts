@@ -1,4 +1,5 @@
-import { CardTypeToRender, PendingCard, PublishedCard } from "../common/interface"
+import { CardTypeToRender, PendingCard, PublishedCard } from "../../common/interface"
+
 
 export function getKeyByValue<T extends string>(
   enumObj: Record<string, T>,

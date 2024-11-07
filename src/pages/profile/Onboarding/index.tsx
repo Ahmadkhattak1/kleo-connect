@@ -3,12 +3,12 @@ import { ReactComponent as Kleo } from '../../../assets/images/kleoWithBg.svg'
 import { ReactComponent as PhantomLogo } from '../../../assets/images/phantom.svg'
 import { ReactComponent as Arrow } from '../../../assets/images/arrow.svg'
 import { ReactComponent as Tick } from '../../../assets/images/check.svg'
-import Accordion from '../../common/Accordion'
-import useFetch from '../../common/hooks/useFetch'
-import { usePhantomWallet } from '../../common/hooks/usePhantomWallet'
 import { PublicKey } from '@solana/web3.js'
-import Alert from '../../common/Alerts'
 import { ReactComponent as AlertIcon } from '../../../assets/images/alert.svg'
+import { usePhantomWallet } from '../../../common/hooks/usePhantomWallet'
+import useFetch from '../../../common/hooks/useFetch'
+import Alert from '../../../common/Alerts'
+import Accordion from '../../../common/Accordion'
 
 interface OnboardingProps {
   handleLogin: () => void
@@ -179,7 +179,7 @@ export default function Onboarding({ handleLogin }: OnboardingProps) {
             </button>
             {signedData && (
               <div className="bg-white p-2 rounded">
-                {/* <p className="mb-2 font-semibold">Signature:</p> 
+                {/* <p className="mb-2 font-semibold">Signature:</p>
                  <code className="text-sm bg-gray-200 p-2 rounded">
                   {Array.from(signedData.signature).join(', ')}
                 </code> */}

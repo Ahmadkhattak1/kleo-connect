@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import LeaderboardRow from "./LeaderboardRow";
-import useFetch from "../../common/hooks/useFetch";
+import useFetch from "../../../common/hooks/useFetch";
 
 export interface ILeaderboardData {
     address: string;

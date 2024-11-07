@@ -17,9 +17,9 @@ import Leaderboard from './components/Leaderboard'
 import Privacy from './components/Privacy'
 import LeaderBoardBanner from './components/LeaderBoardBanner'
 import Navbar, { PAGE_NAMES } from './components/Navbar'
-import useFetch from '../common/hooks/useFetch'
 import { Method } from 'axios'
 import { useNavigate } from 'react-router-dom';
+import useFetch from '../../common/hooks/useFetch'
 
 interface UserGraphResponse {
   processing?: boolean;

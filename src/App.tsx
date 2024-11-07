@@ -2,14 +2,13 @@ import { ReactElement, useEffect, useState } from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import PrivacyPolicy from './pages/home/sections/PrivacyPolicy'
 import SignUp from './pages/signup'
-import BadgesList from './pages/BadgesList'
 import { UserData } from './pages/constants/SignupData'
-import useFetch, { FetchStatus } from './pages/common/hooks/useFetch'
 import Settings from './pages/profile/Settings'
 import Profile from './pages/profile'
 
 
 import { MyData } from './pages/profile/components/MyData'
+import useFetch from './common/hooks/useFetch'
 function App(): ReactElement {
   const emptyStringArray: string[] = []
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -101,7 +100,6 @@ function App(): ReactElement {
             path="/profile/:address"
             element={<Profile />}
           />
-          <Route path="/badges" element={<BadgesList />} />
 
           <Route path="/setting" element={<Settings user={user} />} />
           {isLoggedIn && <Route path='my-data/:address' element={<MyData />} />}
