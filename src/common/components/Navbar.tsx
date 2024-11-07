@@ -22,7 +22,7 @@ const Navbar = ({ userAddress, page }: NavbarProps) => {
 
   return (
     <div className="w-full bg-[#f8f9fc] fixed z-10 shadow-md">
-      <div className="container mx-auto p-4 flex justify-between items-center">
+      <div className="container mx-auto py-4 px-6 flex justify-between items-center">
         <Logo />
         <div className="flex space-x-6">
           <button

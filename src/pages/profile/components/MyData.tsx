@@ -2,6 +2,9 @@ import Navbar, { PAGE_NAMES } from "../../../common/components/Navbar";
 import { ReactComponent as SpaceCat } from '../../../assets/myData/spaceCat.svg';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { SearchIcon } from "lucide-react";
 
 interface MyDataComponentProps { }
 
@@ -66,12 +69,12 @@ export const MyData = ({ }: MyDataComponentProps) => {
 
   // --------------- END: Validate UserAddress Logic --------------- //
 
-  return <div className="bg-slate-100">
+  return <div className="bg-grayblue-100 h-full">
     <Navbar
       userAddress={userAddress || ''}
       page={PAGE_NAMES.MY_DATA}
     />
-    <div className="flex items-center justify-center min-h-screen bg-white">
+    {/* <div className="flex items-center justify-center min-h-screen bg-white">
       <div className="w-full max-w-md p-8 bg-gray-100 rounded-lg shadow-lg">
         <div className="flex items-center justify-center w-full h-fit mb-4">
           <SpaceCat />
@@ -81,6 +84,26 @@ export const MyData = ({ }: MyDataComponentProps) => {
           We're working hard to bring you something amazing. Stay tuned!
         </p>
       </div>
+    </div> */}
+    <div className="w-full container mx-auto py-4 px-6 flex justify-between items-center mt-[72px] pt-12">
+      <div className="my-data-wrapper flex flex-col justify-start items-start w-full h-full">
+        <div className="search-bar-wrapper w-full">
+          <div className="bg-white flex items-center justify-center px-4 py-1 pr-1 rounded-lg w-full">
+            <SearchIcon className="size-5" />
+            <Input
+              type="search"
+              placeholder="Search"
+              className="size-full border-none bg-transparent focus:outline-none font-inter text-sm"
+            />
+            <Button type="submit" className="bg-primary-btn-500 text-white">Search</Button>
+          </div>
+        </div>
+
+        <div className="filter-wrapper w-full mt-4 bg-grayblue-200">
+          Filters
+        </div>
+      </div>
+
     </div>
   </div>
 }
