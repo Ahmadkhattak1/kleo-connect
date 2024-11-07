@@ -3,7 +3,6 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy'
 import SignUp from './pages/signup'
 import { UserData } from './common/constants/SignupData'
-import Settings from './pages/profile/Settings'
 import Profile from './pages/profile'
 
 
@@ -101,7 +100,6 @@ function App(): ReactElement {
             element={<Profile />}
           />
 
-          <Route path="/setting" element={<Settings user={user} />} />
           {isLoggedIn && <Route path='my-data/:address' element={<MyData />} />}
           {isLoggedIn ? (
             <Route

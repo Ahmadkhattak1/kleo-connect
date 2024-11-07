@@ -1,6 +1,6 @@
 
 import { UserData } from '../../common/interface'
-import Onboarding from '../profile/Onboarding/Authentication'
+import Onboarding from './Onboarding/Authentication'
 import { useNavigate } from 'react-router-dom'
 
 interface SignupProps {
