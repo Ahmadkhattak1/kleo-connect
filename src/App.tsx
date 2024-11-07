@@ -1,18 +1,13 @@
 import { ReactElement, useEffect, useState } from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
-import Navbar from './components/navbar/Navbar'
-import PrivacyPolicy from './components/home/sections/PrivacyPolicy'
-import SignUp from './components/signup'
-import BadgesList from './components/BadgesList'
-import { UserData } from './components/constants/SignupData'
-import Privacy from './components/profile/Settings/Privacy'
-import useFetch, { FetchStatus } from './components/common/hooks/useFetch'
-import Settings from './components/profile/Settings'
-import Profile from './components/profile'
-import config from './components/common/config'
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy'
+import SignUp from './pages/signup'
+import { UserData } from './common/constants/SignupData'
+import Profile from './pages/profile'
 
 
-import { MyData } from './components/profile/components/MyData'
+import { MyData } from './pages/profile/components/MyData'
+import useFetch from './common/hooks/useFetch'
 function App(): ReactElement {
   const emptyStringArray: string[] = []
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -104,9 +99,7 @@ function App(): ReactElement {
             path="/profile/:address"
             element={<Profile />}
           />
-          <Route path="/badges" element={<BadgesList />} />
 
-          <Route path="/setting" element={<Settings user={user} />} />
           {isLoggedIn && <Route path='my-data/:address' element={<MyData />} />}
           {isLoggedIn ? (
             <Route
