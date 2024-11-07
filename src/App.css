@@ -51,32 +51,59 @@
   font-style: normal;
 }
 
-.color-empty {
-  fill: #ebedf0;
-  /* Light gray, for empty tiles */
-}
+@layer base {
+  :root {
+    --background: hsl(0, 0%, 100%);
+    --foreground: hsl(0, 0%, 4%); /* Rounded from 3.9% */
+    --card: hsl(0, 0%, 100%);
+    --card-foreground: hsl(0, 0%, 4%); /* Rounded from 3.9% */
+    --popover: hsl(0, 0%, 100%);
+    --popover-foreground: hsl(0, 0%, 4%); /* Rounded from 3.9% */
+    --primary: hsl(0, 0%, 9%);
+    --primary-foreground: hsl(0, 0%, 98%);
+    --secondary: hsl(0, 0%, 96%);
+    --secondary-foreground: hsl(0, 0%, 9%);
+    --muted: hsl(0, 0%, 96%);
+    --muted-foreground: hsl(0, 0%, 45%);
+    --accent: hsl(0, 0%, 96%);
+    --accent-foreground: hsl(0, 0%, 9%);
+    --destructive: hsl(0, 84%, 60%);
+    --destructive-foreground: hsl(0, 0%, 98%);
+    --border: hsl(0, 0%, 90%); /* Rounded from 89.8% */
+    --input: hsl(0, 0%, 90%); /* Rounded from 89.8% */
+    --ring: hsl(0, 0%, 4%); /* Rounded from 3.9% */
+    --chart-1: hsl(12, 76%, 61%);
+    --chart-2: hsl(173, 58%, 39%);
+    --chart-3: hsl(197, 37%, 24%);
+    --chart-4: hsl(43, 74%, 66%);
+    --chart-5: hsl(27, 87%, 67%);
+    --radius: 0.5rem;
+  }
 
-.color-scale-1 {
-  fill: #9be9a8;
-  /* Light green */
-}
-
-.color-scale-2 {
-  fill: #40c463;
-  /* Medium green */
-}
-
-.color-scale-3 {
-  fill: #30a14e;
-  /* Dark green */
-}
-
-.color-scale-4 {
-  fill: #216e39;
-  /* Darker green */
-}
-
-.color-scale-5 {
-  fill: #164e63;
-  /* Darkest green */
+  .dark {
+    --background: hsl(0, 0%, 4%); /* Rounded from 3.9% */
+    --foreground: hsl(0, 0%, 98%);
+    --card: hsl(0, 0%, 4%); /* Rounded from 3.9% */
+    --card-foreground: hsl(0, 0%, 98%);
+    --popover: hsl(0, 0%, 4%); /* Rounded from 3.9% */
+    --popover-foreground: hsl(0, 0%, 98%);
+    --primary: hsl(0, 0%, 98%);
+    --primary-foreground: hsl(0, 0%, 9%);
+    --secondary: hsl(0, 0%, 15%); /* Rounded from 14.9% */
+    --secondary-foreground: hsl(0, 0%, 98%);
+    --muted: hsl(0, 0%, 15%); /* Rounded from 14.9% */
+    --muted-foreground: hsl(0, 0%, 64%); /* Rounded from 63.9% */
+    --accent: hsl(0, 0%, 15%); /* Rounded from 14.9% */
+    --accent-foreground: hsl(0, 0%, 98%);
+    --destructive: hsl(0, 63%, 31%); /* Rounded from 62.8%, 30.6% */
+    --destructive-foreground: hsl(0, 0%, 98%);
+    --border: hsl(0, 0%, 15%); /* Rounded from 14.9% */
+    --input: hsl(0, 0%, 15%); /* Rounded from 14.9% */
+    --ring: hsl(0, 0%, 83%);
+    --chart-1: hsl(220, 70%, 50%);
+    --chart-2: hsl(160, 60%, 45%);
+    --chart-3: hsl(30, 80%, 55%);
+    --chart-4: hsl(280, 65%, 60%);
+    --chart-5: hsl(340, 75%, 55%);
+  }
 }

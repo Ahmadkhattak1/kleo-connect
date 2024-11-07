@@ -1,7 +1,8 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import svgr from 'vite-plugin-svgr'
+import path from "path"
+import { defineConfig } from 'vite'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import svgr from 'vite-plugin-svgr'
 
 export default defineConfig({
   base: '/',
@@ -9,7 +10,8 @@ export default defineConfig({
     alias: {
       process: 'process/browser',
       path: 'path-browserify',
-      os: 'os-browserify'
+      os: 'os-browserify',
+      "@": path.resolve(__dirname, "./src"),
     }
   },
   plugins: [
