@@ -1,6 +1,6 @@
 import { MetaMaskAvatar } from 'react-metamask-avatar';
 import KleoUserImage from '../../../assets/images/KleoToken.svg'
-import { formatDate } from '../../utils/utils'
+import { formatDate } from '../../../common/utils/utils'
 
 interface IReferralData {
   address: string,

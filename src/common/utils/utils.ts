@@ -1,4 +1,4 @@
-import { CardTypeToRender, PendingCard, PublishedCard } from "../../common/interface"
+import { CardTypeToRender, PendingCard, PublishedCard } from "../interface"
 
 
 export function getKeyByValue<T extends string>(

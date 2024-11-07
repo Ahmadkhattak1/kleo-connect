@@ -1,6 +1,6 @@
 import { MetaMaskAvatar } from 'react-metamask-avatar';
 import KleoUserImage from '../../../assets/images/KleoToken.svg'
-import { truncateText } from '../../utils/utils';
+import { truncateText } from '../../../common/utils/utils';
 
 interface LeaderboardRowProps {
     address: string,
