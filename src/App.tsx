@@ -1,18 +1,15 @@
 import { ReactElement, useEffect, useState } from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
-import Navbar from './components/navbar/Navbar'
-import PrivacyPolicy from './components/home/sections/PrivacyPolicy'
-import SignUp from './components/signup'
-import BadgesList from './components/BadgesList'
-import { UserData } from './components/constants/SignupData'
-import Privacy from './components/profile/Settings/Privacy'
-import useFetch, { FetchStatus } from './components/common/hooks/useFetch'
-import Settings from './components/profile/Settings'
-import Profile from './components/profile'
-import config from './components/common/config'
+import PrivacyPolicy from './pages/home/sections/PrivacyPolicy'
+import SignUp from './pages/signup'
+import BadgesList from './pages/BadgesList'
+import { UserData } from './pages/constants/SignupData'
+import useFetch, { FetchStatus } from './pages/common/hooks/useFetch'
+import Settings from './pages/profile/Settings'
+import Profile from './pages/profile'
 
 
-import { MyData } from './components/profile/components/MyData'
+import { MyData } from './pages/profile/components/MyData'
 function App(): ReactElement {
   const emptyStringArray: string[] = []
   const [isLoggedIn, setIsLoggedIn] = useState(false)
