@@ -12,40 +12,63 @@ interface SearchResultsProps { }
 
 export const SearchResults = ({ }: SearchResultsProps) => {
   const [searchResults, setSearchResults] = useState(SearchResultsList);
-  const [selectAll, setSelectAll] = useState(false);
-  const [selectedCount, setSelectedCount] = useState(0);
+  const [selectAll, setSelectAll] = useState(false); // Global selectAll (across pages)
+  const [selectedCount, setSelectedCount] = useState(0); // Count for the selected items across all pages
   const [faviconFailed, setFaviconFailed] = useState<Record<number, boolean>>({});
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(searchResults.length / ENTRIES_PER_PAGE);
 
-  useEffect(() => setSelectedCount(searchResults.filter((item) => item.isSelected).length), [searchResults]);
-
   // ----------------- Select All Handler ----------------- //
+  // Track selected results on a per-page basis
+  const [pageSelections, setPageSelections] = useState<Record<number, Set<number>>>(
+    Array.from({ length: totalPages }, (_, i) => i + 1).reduce(
+      (acc, page) => ({ ...acc, [page]: new Set<number>() }),
+      {}
+    )
+  );
+
+  // Update selected count whenever the page selections change
+  useEffect(() => {
+    const totalSelectedCount = Object.values(pageSelections)
+      .map((selectedSet) => selectedSet.size)
+      .reduce((acc, count) => acc + count, 0);
+    setSelectedCount(totalSelectedCount);
+  }, [pageSelections]);
+
   const handleSelectAll = () => {
     const newSelectAll = !selectAll;
     setSelectAll(newSelectAll);
-    const updatedSearchResults = searchResults.map((item) => ({
-      ...item,
-      isSelected: newSelectAll,
-    }));
-    setSearchResults(updatedSearchResults);
-    setSelectedCount(newSelectAll ? updatedSearchResults.length : 0);
+
+    const updatedPageSelections = { ...pageSelections };
+    if (newSelectAll) {
+      // Select all on the current page
+      const currentPageResults = searchResults.slice(
+        (currentPage - 1) * ENTRIES_PER_PAGE,
+        currentPage * ENTRIES_PER_PAGE
+      );
+      const selectedIds = new Set(currentPageResults.map((item) => item.id));
+      updatedPageSelections[currentPage] = selectedIds;
+    } else {
+      // Deselect all on the current page
+      updatedPageSelections[currentPage] = new Set<number>();
+    }
+
+    setPageSelections(updatedPageSelections);
   };
 
-  // ----------------- Handle SearchItem selection ----------------- //
   const handleSelectSearchResult = (id: number) => {
-    const updatedSearchResults = searchResults.map((item) => {
-      if (item.id === id) {
-        return { ...item, isSelected: !item.isSelected };
-      }
-      return item;
-    });
-    setSearchResults(updatedSearchResults);
-    setSelectedCount(updatedSearchResults.filter((job) => job.isSelected).length);
-    setSelectAll(updatedSearchResults.every((job) => job.isSelected));
+    const updatedPageSelections = { ...pageSelections };
+    const currentPageSelections = updatedPageSelections[currentPage];
+
+    if (currentPageSelections.has(id)) {
+      currentPageSelections.delete(id); // Deselect if already selected
+    } else {
+      currentPageSelections.add(id); // Select if not selected
+    }
+
+    setPageSelections(updatedPageSelections);
   };
 
-  // ----------------- Favicon Handling ----------------- //
   const getFaviconUrl = (url: string | undefined) => {
     try {
       const websiteUrl = new URL(url!);
@@ -59,19 +82,22 @@ export const SearchResults = ({ }: SearchResultsProps) => {
     setFaviconFailed((prevState) => ({ ...prevState, [id]: true }));
   };
 
-  // ----------------- Pagination Helpers ----------------- //
-  // Handle page change
   const handlePageChange = (pageNumber: number) => {
     if (pageNumber >= 1 && pageNumber <= totalPages) {
       setCurrentPage(pageNumber);
     }
   };
 
-  // Determine current page search results to show
   const paginatedResults = searchResults.slice(
     (currentPage - 1) * ENTRIES_PER_PAGE,
     currentPage * ENTRIES_PER_PAGE
   );
+
+  // Determine if selectAll should be checked for the current page
+  const isCurrentPageSelected = (currentPageSelections: Set<number>) =>
+    paginatedResults.every((result) => currentPageSelections.has(result.id));
+
+  const isCurrentPageSelectAllChecked = isCurrentPageSelected(pageSelections[currentPage]);
 
   return (
     <>
@@ -83,7 +109,7 @@ export const SearchResults = ({ }: SearchResultsProps) => {
               {selectedCount} Selected
             </div>
             <Checkbox
-              checked={selectAll}
+              checked={isCurrentPageSelectAllChecked}
               onCheckedChange={handleSelectAll}
               className="h-4 w-4"
             />
@@ -147,7 +173,7 @@ export const SearchResults = ({ }: SearchResultsProps) => {
               </div>
             </div>
             <Checkbox
-              checked={searchResult.isSelected}
+              checked={pageSelections[currentPage].has(searchResult.id)}
               onCheckedChange={() => handleSelectSearchResult(searchResult.id)}
               className="h-4 w-4 mr-2"
             />
@@ -156,12 +182,8 @@ export const SearchResults = ({ }: SearchResultsProps) => {
       </ul>
 
       {/* Pagination */}
-      <div className="flex justify-end w-full">
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
+      <div className="w-full flex justify-end">
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
     </>
   );

@@ -8,6 +8,12 @@ interface PaginationProps {
 }
 
 const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
+  const handlePageChange = (pageNumber: number) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      onPageChange(pageNumber);
+    }
+  };
+
   return (
     <div className="flex items-center gap-4">
       {/* Page X of Y Indicator */}
@@ -19,7 +25,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
       <Button
         variant="outline"
         size="icon"
-        onClick={() => onPageChange(1)}
+        onClick={() => handlePageChange(1)}
         disabled={currentPage === 1}
         className="bg-grayblue-200 hover:bg-grayblue-300 disabled:bg-grayblue-100"
       >
@@ -30,7 +36,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
       <Button
         variant="outline"
         size="icon"
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
         className="bg-grayblue-200 hover:bg-grayblue-300 disabled:bg-grayblue-100"
       >
@@ -41,7 +47,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
       <Button
         variant="outline"
         size="icon"
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
         className="bg-grayblue-200 hover:bg-grayblue-300 disabled:bg-grayblue-100"
       >
@@ -52,7 +58,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
       <Button
         variant="outline"
         size="icon"
-        onClick={() => onPageChange(totalPages)}
+        onClick={() => handlePageChange(totalPages)}
         disabled={currentPage === totalPages}
         className="bg-grayblue-200 hover:bg-grayblue-300 disabled:bg-grayblue-100"
       >
