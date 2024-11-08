@@ -4,9 +4,15 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Trash2, Lock, Unlock, CircleDollarSign, Gift, Globe } from "lucide-react";
 import Pagination from "./Pagination";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 // Constants for pagination
-const ENTRIES_PER_PAGE = 5;
+const ENTRIES_PER_PAGE = 10;
 
 interface SearchResultsProps { }
 
@@ -116,22 +122,69 @@ export const SearchResults = ({ }: SearchResultsProps) => {
           </div>
           <div className="w-px h-6 bg-gray-300" />
           <div className="flex bg-grayblue-200 rounded-lg">
-            <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
-              <Lock />
-            </Button>
-            <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
-              <Unlock />
-            </Button>
-            <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
-              <CircleDollarSign />
-            </Button>
-            <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
-              <Gift />
-            </Button>
-            <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
-              <Trash2 />
-            </Button>
+            <TooltipProvider>
+              {/* Lock Button */}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
+                    <Lock />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent className="bg-white">
+                  <p>Private</p>
+                </TooltipContent>
+              </Tooltip>
+
+              {/* Unlock Button */}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
+                    <Unlock />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent className="bg-white">
+                  <p>Public</p>
+                </TooltipContent>
+              </Tooltip>
+
+              {/* CircleDollarSign Button */}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
+                    <CircleDollarSign />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent className="bg-white">
+                  <p>Monetize</p>
+                </TooltipContent>
+              </Tooltip>
+
+              {/* Gift Button */}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
+                    <Gift />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent className="bg-white">
+                  <p>De Monetize</p>
+                </TooltipContent>
+              </Tooltip>
+
+              {/* Trash2 Button */}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
+                    <Trash2 />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent className="bg-white">
+                  <p>Delete</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
+
         </div>
       </div>
 

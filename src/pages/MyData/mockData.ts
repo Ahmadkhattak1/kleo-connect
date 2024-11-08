@@ -25,6 +25,10 @@ export const DataTypeMenuList: MenuItemType[] = [
 
 export const TimeRangeMenuList: MenuItemType[] = [
   {
+    label: 'All',
+    value: 'all'
+  },
+  {
     label: 'Today',
     value: 'today'
   },
@@ -43,6 +47,7 @@ export const TimeRangeMenuList: MenuItemType[] = [
 ]
 
 export const ActivityTypesMenuList: MenuItemType[] = [
+  { value: "All", label: "All" },
   { value: "Cryptocurrency", label: "Cryptocurrency" },
   { value: "Comedy", label: "Comedy" },
   { value: "Gaming", label: "Gaming" },
