@@ -22,6 +22,7 @@ export interface CustomSelectProps {
   contentClassName?: string;
   align?: 'start' | 'center' | 'end';  // Updated alignment values
   placeholder?: string | 'Please Select';
+  disabled?: boolean
 }
 
 const CustomSelect: React.FC<CustomSelectProps> = ({
@@ -33,6 +34,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   contentClassName,
   placeholder,
   align = 'start',  // Default alignment is 'start'
+  disabled = false
 }) => {
   const [open, setOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItemType | null>(
@@ -55,7 +57,8 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
             aria-expanded={open}
             className={cn(
               "flex items-center justify-between rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-opacity-75",
-              buttonClassName
+              buttonClassName,
+              `${disabled ? 'pointer-events-none opacity-50' : 'pointer-events-auto opacity-100'}`
             )}
           >
             {selectedMenuItem?.label || placeholder || 'Please Select'}

@@ -71,6 +71,8 @@ export const MyData = ({ }: MyDataComponentProps) => {
 
   // --------------- END: Validate UserAddress Logic --------------- //
 
+  const [isResultsLoading, setIsResultsLoading] = useState<boolean>(false);
+
   return <div className="bg-grayblue-100 h-full">
     <Navbar
       userAddress={userAddress || ''}
@@ -89,6 +91,7 @@ export const MyData = ({ }: MyDataComponentProps) => {
     </div> */}
     <div className="w-full container mx-auto py-4 px-6 flex justify-between items-center mt-[72px] pt-12">
       <div className="my-data-wrapper flex flex-col justify-start items-start w-full h-full">
+        {/* Search Bar */}
         <div className="search-bar-wrapper w-full">
           <div className="bg-white flex items-center justify-center px-4 py-1 pr-1 rounded-lg w-full">
             <SearchIcon className="size-5" />
@@ -110,6 +113,7 @@ export const MyData = ({ }: MyDataComponentProps) => {
             align="start"
             placeholder="Data Type"
             onChange={(value) => console.log('Selected Data Type : ', value)}
+            disabled={isResultsLoading}
           />
           <CustomSelect
             menuList={ActivityTypesMenuList}
@@ -118,6 +122,7 @@ export const MyData = ({ }: MyDataComponentProps) => {
             align="start"
             placeholder="Activity Type"
             onChange={(value) => console.log('Selected Data Type : ', value)}
+            disabled={isResultsLoading}
           />
           <CustomSelect
             menuList={TimeRangeMenuList}
@@ -126,6 +131,7 @@ export const MyData = ({ }: MyDataComponentProps) => {
             align="start"
             placeholder="Time Range"
             onChange={(value) => console.log('Selected Data Type : ', value)}
+            disabled={isResultsLoading}
           />
         </div>
       </div>
