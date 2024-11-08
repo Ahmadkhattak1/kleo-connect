@@ -71,7 +71,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: true,
     isMonetised: true,
     isPublic: true,
-    domainName: 'dribble.com',
     icon: 'https://www.dribble.com/favicon.ico',
   },
   {
@@ -82,7 +81,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: true,
     isMonetised: false,
     isPublic: true,
-    domainName: 'xyz.com',
     icon: 'https://www.xyz.com/favicon.ico',
   },
   {
@@ -93,7 +91,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    domainName: 'abc.com',
     icon: 'https://www.abc.com/favicon.ico',
   },
   {
@@ -104,7 +101,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    domainName: 'devopsjobs.com',
     icon: 'https://www.devopsjobs.com/favicon.ico',
   },
   {
@@ -115,7 +111,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    domainName: 'mobiledev.com',
     icon: 'https://www.mobiledev.com/favicon.ico',
   },
   {
@@ -126,7 +121,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    domainName: 'datasciencejobs.com',
     icon: 'https://www.datasciencejobs.com/favicon.ico',
   },
   {
@@ -137,7 +131,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: false,
-    domainName: 'producthunt.com',
     icon: 'https://www.producthunt.com/favicon.ico',
   },
   {
@@ -148,7 +141,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    domainName: 'designerjobs.com',
     icon: 'https://www.designerjobs.com/favicon.ico',
   },
   {
@@ -159,7 +151,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    domainName: 'cyberjobs.com',
     icon: 'https://www.cyberjobs.com/favicon.ico',
   },
   {
@@ -170,7 +161,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    domainName: 'cloudjobs.com',
     icon: 'https://www.cloudjobs.com/favicon.ico',
   },
   {
@@ -181,7 +171,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    domainName: 'mljobs.com',
     icon: 'https://www.mljobs.com/favicon.ico',
   },
   {
@@ -192,7 +181,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    domainName: 'techwriterjobs.com',
     icon: 'https://www.techwriterjobs.com/favicon.ico',
   },
   {
@@ -203,7 +191,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    domainName: 'qajobs.com',
     icon: 'https://www.qajobs.com/favicon.ico',
   },
   {
@@ -214,7 +201,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    domainName: 'sysadminjobs.com',
     icon: 'https://www.sysadminjobs.com/favicon.ico',
   },
   {
@@ -225,7 +211,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    domainName: 'salesforcejobs.com',
     icon: 'https://www.salesforcejobs.com/favicon.ico',
   },
   {
@@ -236,7 +221,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    domainName: 'gamedevs.com',
     icon: 'https://www.gamedevs.com/favicon.ico',
   },
   {
@@ -247,7 +231,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: false,
-    domainName: 'blockchainjobs.com',
     icon: 'https://www.blockchainjobs.com/favicon.ico',
   },
   {
@@ -258,7 +241,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    domainName: 'ecommercejobs.com',
     icon: 'https://www.ecommercejobs.com/favicon.ico',
   },
   {
@@ -269,7 +251,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    domainName: 'itsupportjobs.com',
     icon: 'https://www.itsupportjobs.com/favicon.ico',
   },
   {
@@ -280,7 +261,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    domainName: 'seojobs.com',
     icon: 'https://www.seojobs.com/favicon.ico',
   },
   {
@@ -291,7 +271,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    domainName: 'contentjobs.com',
     icon: 'https://www.contentjobs.com/favicon.ico',
   },
   {
@@ -302,7 +281,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    domainName: 'businessanalystjobs.com',
     icon: 'https://www.businessanalystjobs.com/favicon.ico',
   },
   {
@@ -313,7 +291,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    domainName: 'marketingjobs.com',
     icon: 'https://www.marketingjobs.com/favicon.ico',
   },
   {
@@ -324,7 +301,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    domainName: 'financejobs.com',
     icon: 'https://www.financejobs.com/favicon.ico',
   },
   {
@@ -335,7 +311,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    domainName: 'customersuccessjobs.com',
     icon: 'https://www.customersuccessjobs.com/favicon.ico',
   },
 ]

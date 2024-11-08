@@ -74,7 +74,7 @@ export const MyData = ({ }: MyDataComponentProps) => {
 
   const [isResultsLoading, setIsResultsLoading] = useState<boolean>(false);
 
-  return <div className="bg-grayblue-100 h-full">
+  return <div className="bg-grayblue-100 h-fit pb-16">
     <Navbar
       userAddress={userAddress || ''}
       page={PAGE_NAMES.MY_DATA}

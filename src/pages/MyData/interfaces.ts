@@ -13,6 +13,5 @@ export interface SearchResult {
   isSelected: boolean;
   isMonetised: boolean;
   isPublic: boolean;
-  domainName: string;
   icon: string;
 }

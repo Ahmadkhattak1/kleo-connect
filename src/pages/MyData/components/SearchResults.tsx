@@ -29,7 +29,7 @@ export const SearchResults = ({ }: SearchResultsProps) => {
   };
 
   // Handle individual item selection
-  const handleSelectJob = (id: number) => {
+  const handleSelectSearchResult = (id: number) => {
     const updatedSearchResults = searchResults.map((job) => {
       if (job.id === id) {
         return { ...job, isSelected: !job.isSelected };
@@ -43,7 +43,6 @@ export const SearchResults = ({ }: SearchResultsProps) => {
 
   return (
     <>
-
       <div className="flex justify-between items-center w-full">
         <h2 className="font-inter font-semibold text-2xl mb-2">Search Results</h2>
         <div className="flex justify-end items-center gap-4">
@@ -81,25 +80,39 @@ export const SearchResults = ({ }: SearchResultsProps) => {
           </div>
         </div>
       </div>
-      {/* Job List */}
-      <ul className="space-y-2">
-        {searchResults.map((job) => (
+      {/* Search Results List */}
+      <ul className="space-y-4 w-full">
+        {searchResults.map((searchResult) => (
           <li
-            key={job.id}
-            className={`flex justify-between items-center border p-3 rounded-md ${job.isSelected ? 'bg-gray-100' : ''
-              }`}
+            key={searchResult.id}
+            className={`flex p-4 bg-white rounded-lg shadow-sm items-center justify-between gap-6`}
           >
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                checked={job.isSelected}
-                onCheckedChange={() => handleSelectJob(job.id)}
-                className="h-4 w-4"
-              />
-              <div>
-                <h3 className="font-medium">{job.title}</h3>
-                <p className="text-sm text-gray-500">{job.domainName}</p>
+            <div className="flex items-center justify-start flex-1 gap-4">
+              <div className="h-[50px] w-[50px] bg-[#EAECF5] rounded-lg">
+                {/* Add favicon here */}
+              </div>
+              <div className="flex flex-col justify-between items-start font-inter font-normal">
+                <div className="flex justify-start items-center gap-2">
+                  <p className="font-semibold text-base">{searchResult.title}</p>
+                  <a
+                    href={searchResult.referenceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-gray-700"
+                  >
+                    ({new URL(searchResult.referenceUrl).hostname})
+                  </a>
+                  {!searchResult.isPublic && <Lock className="h-4 w-4 text-gray-700" />}
+                  {searchResult.isMonetised && <CircleDollarSign className="h-4 w-4 text-gray-700" />}
+                </div>
+                <p className="font-inter font-normal text-sm text-gray-700">{searchResult.description}</p>
               </div>
             </div>
+            <Checkbox
+              checked={searchResult.isSelected}
+              onCheckedChange={() => handleSelectSearchResult(searchResult.id)}
+              className="h-4 w-4 mr-2"
+            />
           </li>
         ))}
       </ul>
