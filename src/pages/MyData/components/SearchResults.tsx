@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { SearchResultsList } from "../mockData";
-import { Checkbox } from '@/components/ui/checkbox';
+import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Trash2, Lock, Unlock, CircleDollarSign, Gift, Globe } from "lucide-react";
+import Pagination from "./Pagination";
 
 // Constants for pagination
-const ENTRIES_PER_PAGE = 3; // 5 entries per page
-const MAX_PAGINATION_ITEMS = 4; // At any time, max 5 pagination items
+const ENTRIES_PER_PAGE = 5;
 
 interface SearchResultsProps { }
 
@@ -18,15 +18,15 @@ export const SearchResults = ({ }: SearchResultsProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(searchResults.length / ENTRIES_PER_PAGE);
 
-  useEffect(() => setSelectedCount(searchResults.filter((item) => item.isSelected).length), []);
+  useEffect(() => setSelectedCount(searchResults.filter((item) => item.isSelected).length), [searchResults]);
 
   // ----------------- Select All Handler ----------------- //
   const handleSelectAll = () => {
     const newSelectAll = !selectAll;
     setSelectAll(newSelectAll);
-    const updatedSearchResults = searchResults.map((job) => ({
-      ...job,
-      selected: newSelectAll,
+    const updatedSearchResults = searchResults.map((item) => ({
+      ...item,
+      isSelected: newSelectAll,
     }));
     setSearchResults(updatedSearchResults);
     setSelectedCount(newSelectAll ? updatedSearchResults.length : 0);
@@ -72,93 +72,6 @@ export const SearchResults = ({ }: SearchResultsProps) => {
     (currentPage - 1) * ENTRIES_PER_PAGE,
     currentPage * ENTRIES_PER_PAGE
   );
-
-  // ----------------- Pagination Rendering ----------------- //
-  const renderPagination = () => {
-    if (totalPages <= MAX_PAGINATION_ITEMS) {
-      // If total pages are <= 5, show all pages
-      return Array.from({ length: totalPages }).map((_, index) => {
-        const page = index + 1;
-        return (
-          <button
-            onClick={() => handlePageChange(page)}
-            className={`px-2 ${currentPage === page ? 'text-purple-700 font-semibold' : ''}`}
-          >
-            {page}
-          </button>
-        );
-      });
-    }
-
-    // General case: when total pages > 5
-    const pagination = [];
-
-    // Always show the first page
-    pagination.push(
-      <button
-        onClick={() => handlePageChange(1)}
-        className={`px-2 ${currentPage === 1 ? 'text-purple-700 font-semibold' : ''}`}
-      >
-        1
-      </button>
-    );
-
-    // Add leading ellipsis if currentPage is more than 3 away from page 1
-    if (currentPage > 3) {
-      pagination.push(<span className="px-2">...</span>);
-    }
-
-    // Determine the range of middle pages to display
-    const startPage = Math.max(2, currentPage - 1);
-    const endPage = Math.min(totalPages - 1, currentPage + 1);
-
-    for (let i = startPage; i <= endPage; i++) {
-      pagination.push(
-        <button
-          onClick={() => handlePageChange(i)}
-          className={`px-2 ${currentPage === i ? 'text-purple-700 font-semibold' : ''}`}
-        >
-          {i}
-        </button>
-      );
-    }
-
-    // Add trailing ellipsis if currentPage is less than totalPages - 2
-    if (currentPage < totalPages - 2) {
-      pagination.push(<span className="px-2">...</span>);
-    }
-
-    // Always show the last page
-    pagination.push(
-      <button
-        onClick={() => handlePageChange(totalPages)}
-        className={`px-2 ${currentPage === totalPages ? 'text-purple-700 font-semibold' : ''}`}
-      >
-        {totalPages}
-      </button>
-    );
-
-    // Return pagination controls with prev/next buttons
-    return (
-      <div className="flex items-center">
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className="px-2"
-        >
-          ←
-        </button>
-        {pagination}
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className="px-2"
-        >
-          →
-        </button>
-      </div>
-    );
-  };
 
   return (
     <>
@@ -244,8 +157,12 @@ export const SearchResults = ({ }: SearchResultsProps) => {
 
       {/* Pagination */}
       <div className="flex justify-end w-full">
-        {renderPagination()}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       </div>
     </>
-  )
-}
+  );
+};
