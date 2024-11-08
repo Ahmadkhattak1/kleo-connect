@@ -21,6 +21,7 @@ export interface CustomSelectProps {
   buttonClassName?: string;
   contentClassName?: string;
   align?: 'start' | 'center' | 'end';  // Updated alignment values
+  placeholder?: string | 'Please Select';
 }
 
 const CustomSelect: React.FC<CustomSelectProps> = ({
@@ -30,6 +31,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   className,
   buttonClassName,
   contentClassName,
+  placeholder,
   align = 'start',  // Default alignment is 'start'
 }) => {
   const [open, setOpen] = useState(false);
@@ -56,12 +58,13 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
               buttonClassName
             )}
           >
-            {selectedMenuItem?.label || 'Please Select'}
+            {selectedMenuItem?.label || placeholder || 'Please Select'}
             {open ? <ChevronUp className="opacity-50" /> : <ChevronDown className="opacity-50" />}
           </Button>
         </PopoverTrigger>
         <PopoverContent
           align={align}
+          sideOffset={8}
           className={cn(
             "absolute z-10 w-[200px] p-0 max-h-48 overflow-y-auto bg-white shadow-md",
             contentClassName,

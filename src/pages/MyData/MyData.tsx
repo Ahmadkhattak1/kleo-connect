@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
 import CustomSelect from "./components/CustomSelect";
-import { SelectionTypesMenuList } from "./mockData";
+import { DataTypeMenuList, SelectionTypesMenuList, TimeRangeMenuList } from "./mockData";
 
 interface MyDataComponentProps { }
 
@@ -101,17 +101,45 @@ export const MyData = ({ }: MyDataComponentProps) => {
           </div>
         </div>
 
-        <div className="filter-wrapper w-full mt-4">
-          {/* Selection Types : [All, None, Private, Public, Monetized, NonMonetized] */}
-          <CustomSelect
-            menuList={SelectionTypesMenuList}
-            buttonClassName="min-w-[160px] bg-grayblue-200 hover:bg-grayblue-300"
-            contentClassName="custom-popover-content"
-            align="start"
-            onChange={function (value: string): void {
-              console.log("Selection Type : ", value);
-            }}
-          />
+        <div className="filter-wrapper w-full mt-4 flex justify-between">
+          {/* selectionType and selectActions container */}
+          <div className="flex items-center justify-start">
+            {/* Selection Types : [All, None, Private, Public, Monetized, NonMonetized] */}
+            <CustomSelect
+              menuList={SelectionTypesMenuList}
+              buttonClassName="min-w-[160px] bg-grayblue-200 hover:bg-grayblue-300"
+              contentClassName="custom-popover-content"
+              align="start"
+              onChange={(value) => console.log('Selection Type : ', value)}
+            />
+          </div>
+          {/* Filters wrapper */}
+          <div className="flex justify-end items-center gap-4">
+            <CustomSelect
+              menuList={DataTypeMenuList}
+              buttonClassName="min-w-[100px] bg-transparent border border-grayblue-300 hover:bg-grayblue-200"
+              contentClassName=""
+              align="start"
+              placeholder="Data Type"
+              onChange={(value) => console.log('Selected Data Type : ', value)}
+            />
+            <CustomSelect
+              menuList={DataTypeMenuList}
+              buttonClassName="min-w-[100px] bg-transparent border border-grayblue-300 hover:bg-grayblue-200"
+              contentClassName=""
+              align="start"
+              placeholder="Activity Type"
+              onChange={(value) => console.log('Selected Data Type : ', value)}
+            />
+            <CustomSelect
+              menuList={TimeRangeMenuList}
+              buttonClassName="min-w-[100px] bg-transparent border border-grayblue-300 hover:bg-grayblue-200"
+              contentClassName=""
+              align="start"
+              placeholder="Time Range"
+              onChange={(value) => console.log('Selected Data Type : ', value)}
+            />
+          </div>
         </div>
       </div>
 

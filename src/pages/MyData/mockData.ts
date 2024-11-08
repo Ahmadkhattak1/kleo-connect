@@ -26,3 +26,37 @@ export const SelectionTypesMenuList: MenuItemType[] = [
     value: 'nonMonetized'
   },
 ]
+
+export const DataTypeMenuList: MenuItemType[] = [
+  {
+    label: 'JSON',
+    value: 'json'
+  },
+  {
+    label: 'RAW',
+    value: 'raw'
+  },
+  {
+    label: 'IMAGE',
+    value: 'image'
+  },
+]
+
+export const TimeRangeMenuList: MenuItemType[] = [
+  {
+    label: 'Today',
+    value: 'today'
+  },
+  {
+    label: 'Last Week',
+    value: 'lastWeek'
+  },
+  {
+    label: 'Last Month',
+    value: 'lastMonth'
+  },
+  {
+    label: 'Last Year',
+    value: 'lastYear'
+  },
+]
