@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { SearchResultsList } from "../mockData";
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from "@/components/ui/button";
-import { Trash2, Lock, Unlock, CircleDollarSign, Gift, Globe } from "lucide-react"; // Add the Globe icon here
+import { Trash2, Lock, Unlock, CircleDollarSign, Gift, Globe } from "lucide-react";
+
+// Constants for pagination
+const ENTRIES_PER_PAGE = 3; // 5 entries per page
+const MAX_PAGINATION_ITEMS = 4; // At any time, max 5 pagination items
 
 interface SearchResultsProps { }
 
@@ -10,14 +14,13 @@ export const SearchResults = ({ }: SearchResultsProps) => {
   const [searchResults, setSearchResults] = useState(SearchResultsList);
   const [selectAll, setSelectAll] = useState(false);
   const [selectedCount, setSelectedCount] = useState(0);
-  const [faviconFailed, setFaviconFailed] = useState<Record<number, boolean>>({}); // Track failed favicon loads
+  const [faviconFailed, setFaviconFailed] = useState<Record<number, boolean>>({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(searchResults.length / ENTRIES_PER_PAGE);
 
-  useEffect(
-    () => setSelectedCount(searchResults.filter((item) => item.isSelected).length)
-    , []
-  );
+  useEffect(() => setSelectedCount(searchResults.filter((item) => item.isSelected).length), []);
 
-  // Handle Select All / Deselect All
+  // ----------------- Select All Handler ----------------- //
   const handleSelectAll = () => {
     const newSelectAll = !selectAll;
     setSelectAll(newSelectAll);
@@ -29,7 +32,7 @@ export const SearchResults = ({ }: SearchResultsProps) => {
     setSelectedCount(newSelectAll ? updatedSearchResults.length : 0);
   };
 
-  // Handle individual item selection
+  // ----------------- Handle SearchItem selection ----------------- //
   const handleSelectSearchResult = (id: number) => {
     const updatedSearchResults = searchResults.map((item) => {
       if (item.id === id) {
@@ -42,6 +45,7 @@ export const SearchResults = ({ }: SearchResultsProps) => {
     setSelectAll(updatedSearchResults.every((job) => job.isSelected));
   };
 
+  // ----------------- Favicon Handling ----------------- //
   const getFaviconUrl = (url: string | undefined) => {
     try {
       const websiteUrl = new URL(url!);
@@ -55,18 +59,116 @@ export const SearchResults = ({ }: SearchResultsProps) => {
     setFaviconFailed((prevState) => ({ ...prevState, [id]: true }));
   };
 
+  // ----------------- Pagination Helpers ----------------- //
+  // Handle page change
+  const handlePageChange = (pageNumber: number) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
+
+  // Determine current page search results to show
+  const paginatedResults = searchResults.slice(
+    (currentPage - 1) * ENTRIES_PER_PAGE,
+    currentPage * ENTRIES_PER_PAGE
+  );
+
+  // ----------------- Pagination Rendering ----------------- //
+  const renderPagination = () => {
+    if (totalPages <= MAX_PAGINATION_ITEMS) {
+      // If total pages are <= 5, show all pages
+      return Array.from({ length: totalPages }).map((_, index) => {
+        const page = index + 1;
+        return (
+          <button
+            onClick={() => handlePageChange(page)}
+            className={`px-2 ${currentPage === page ? 'text-purple-700 font-semibold' : ''}`}
+          >
+            {page}
+          </button>
+        );
+      });
+    }
+
+    // General case: when total pages > 5
+    const pagination = [];
+
+    // Always show the first page
+    pagination.push(
+      <button
+        onClick={() => handlePageChange(1)}
+        className={`px-2 ${currentPage === 1 ? 'text-purple-700 font-semibold' : ''}`}
+      >
+        1
+      </button>
+    );
+
+    // Add leading ellipsis if currentPage is more than 3 away from page 1
+    if (currentPage > 3) {
+      pagination.push(<span className="px-2">...</span>);
+    }
+
+    // Determine the range of middle pages to display
+    const startPage = Math.max(2, currentPage - 1);
+    const endPage = Math.min(totalPages - 1, currentPage + 1);
+
+    for (let i = startPage; i <= endPage; i++) {
+      pagination.push(
+        <button
+          onClick={() => handlePageChange(i)}
+          className={`px-2 ${currentPage === i ? 'text-purple-700 font-semibold' : ''}`}
+        >
+          {i}
+        </button>
+      );
+    }
+
+    // Add trailing ellipsis if currentPage is less than totalPages - 2
+    if (currentPage < totalPages - 2) {
+      pagination.push(<span className="px-2">...</span>);
+    }
+
+    // Always show the last page
+    pagination.push(
+      <button
+        onClick={() => handlePageChange(totalPages)}
+        className={`px-2 ${currentPage === totalPages ? 'text-purple-700 font-semibold' : ''}`}
+      >
+        {totalPages}
+      </button>
+    );
+
+    // Return pagination controls with prev/next buttons
+    return (
+      <div className="flex items-center">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-2"
+        >
+          ←
+        </button>
+        {pagination}
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-2"
+        >
+          →
+        </button>
+      </div>
+    );
+  };
+
   return (
     <>
       <div className="flex justify-between items-center w-full">
         <h2 className="font-inter font-semibold text-2xl mb-2">Search Results</h2>
         <div className="flex justify-end items-center gap-4">
           <div className="flex justify-end items-center gap-2 bg-grayblue-200 rounded-lg p-2 px-4">
-            {/* Selected Count Label */}
             <div className="text-gray-700 font-medium">
               {selectedCount} Selected
             </div>
-
-            {/* Select All / Deselect All Checkbox */}
             <Checkbox
               checked={selectAll}
               onCheckedChange={handleSelectAll}
@@ -74,7 +176,6 @@ export const SearchResults = ({ }: SearchResultsProps) => {
             />
           </div>
           <div className="w-px h-6 bg-gray-300" />
-          {/* Action Icons */}
           <div className="flex bg-grayblue-200 rounded-lg">
             <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
               <Trash2 />
@@ -94,9 +195,10 @@ export const SearchResults = ({ }: SearchResultsProps) => {
           </div>
         </div>
       </div>
+
       {/* Search Results List */}
       <ul className="space-y-4 w-full">
-        {searchResults.map((searchResult) => (
+        {paginatedResults.map((searchResult) => (
           <li
             key={searchResult.id}
             className={`flex p-4 bg-white rounded-lg shadow-sm items-center justify-between gap-6`}
@@ -104,13 +206,13 @@ export const SearchResults = ({ }: SearchResultsProps) => {
             <div className="flex items-center justify-start flex-1 gap-4">
               <div className="h-[50px] w-[50px] bg-[#EAECF5] rounded-lg flex items-center justify-center">
                 {faviconFailed[searchResult.id] ? (
-                  <Globe className="h-6 w-6 text-gray-700" /> // Show Globe icon if favicon failed
+                  <Globe className="h-6 w-6 text-gray-700" />
                 ) : (
                   <img
                     src={getFaviconUrl(searchResult.referenceUrl) || ''}
                     alt="Website icon"
                     className="h-full w-full rounded-md"
-                    onError={() => handleFaviconError(searchResult.id)} // Fallback to Globe on error
+                    onError={() => handleFaviconError(searchResult.id)}
                   />
                 )}
               </div>
@@ -139,6 +241,11 @@ export const SearchResults = ({ }: SearchResultsProps) => {
           </li>
         ))}
       </ul>
+
+      {/* Pagination */}
+      <div className="flex justify-end w-full">
+        {renderPagination()}
+      </div>
     </>
   )
 }
