@@ -13,4 +13,6 @@ export interface SearchResult {
   isSelected: boolean;
   isMonetised: boolean;
   isPublic: boolean;
+  createdAt: string;
+  activityType: string;
 }

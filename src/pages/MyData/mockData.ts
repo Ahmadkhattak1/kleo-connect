@@ -61,7 +61,6 @@ export const SearchResultsSummary: SearchSummary = [
   'Data scientist.',
   'A trending job that involves analyzing large amounts of data.'
 ]
-
 export const SearchResultsList: SearchResult[] = [
   {
     id: 1,
@@ -71,6 +70,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: true,
     isMonetised: true,
     isPublic: true,
+    createdAt: '2023-01-01',
+    activityType: 'Cryptocurrency',
   },
   {
     id: 2,
@@ -80,6 +81,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: true,
     isMonetised: false,
     isPublic: true,
+    createdAt: '2023-01-02',
+    activityType: 'Comedy',
   },
   {
     id: 3,
@@ -89,6 +92,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
+    createdAt: '2023-01-03',
+    activityType: 'Gaming',
   },
   {
     id: 4,
@@ -98,6 +103,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
+    createdAt: '2023-01-04',
+    activityType: 'Fitness',
   },
   {
     id: 5,
@@ -107,6 +114,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
+    createdAt: '2023-01-05',
+    activityType: 'Photography',
   },
   {
     id: 6,
@@ -116,6 +125,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
+    createdAt: '2023-01-06',
+    activityType: 'Fashion',
   },
   {
     id: 7,
@@ -125,6 +136,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: false,
+    createdAt: '2023-01-07',
+    activityType: 'Music',
   },
   {
     id: 8,
@@ -134,6 +147,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
+    createdAt: '2023-01-08',
+    activityType: 'Movies',
   },
   {
     id: 9,
@@ -143,6 +158,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
+    createdAt: '2023-01-09',
+    activityType: 'Travel',
   },
   {
     id: 10,
@@ -152,6 +169,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
+    createdAt: '2023-01-10',
+    activityType: 'Blogging',
   },
   {
     id: 11,
@@ -161,6 +180,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
+    createdAt: '2023-01-11',
+    activityType: 'Cryptocurrency',
   },
   {
     id: 12,
@@ -170,6 +191,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
+    createdAt: '2023-01-12',
+    activityType: 'Comedy',
   },
   {
     id: 13,
@@ -179,6 +202,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
+    createdAt: '2023-01-13',
+    activityType: 'Gaming',
   },
   {
     id: 14,
@@ -188,6 +213,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
+    createdAt: '2023-01-14',
+    activityType: 'Fitness',
   },
   {
     id: 15,
@@ -197,6 +224,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
+    createdAt: '2023-01-15',
+    activityType: 'Photography',
   },
   {
     id: 16,
@@ -206,6 +235,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
+    createdAt: '2023-01-16',
+    activityType: 'Fashion',
   },
   {
     id: 17,
@@ -215,6 +246,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: false,
+    createdAt: '2023-01-17',
+    activityType: 'Music',
   },
   {
     id: 18,
@@ -224,6 +257,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
+    createdAt: '2023-01-18',
+    activityType: 'Movies',
   },
   {
     id: 19,
@@ -233,6 +268,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
+    createdAt: '2023-01-19',
+    activityType: 'Travel',
   },
   {
     id: 20,
@@ -242,6 +279,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
+    createdAt: '2023-01-20',
+    activityType: 'Blogging',
   },
   {
     id: 21,
@@ -251,6 +290,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
+    createdAt: '2023-01-21',
+    activityType: 'Cryptocurrency',
   },
   {
     id: 22,
@@ -260,6 +301,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
+    createdAt: '2023-01-22',
+    activityType: 'Comedy',
   },
   {
     id: 23,
@@ -269,6 +312,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
+    createdAt: '2023-01-23',
+    activityType: 'Gaming',
   },
   {
     id: 24,
@@ -278,6 +323,8 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
+    createdAt: '2023-01-24',
+    activityType: 'Fitness',
   },
   {
     id: 25,
@@ -287,5 +334,7 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
+    createdAt: '2023-01-25',
+    activityType: 'Photography',
   },
 ]
