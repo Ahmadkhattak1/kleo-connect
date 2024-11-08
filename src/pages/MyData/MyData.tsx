@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
+import CustomSelect from "./components/CustomSelect";
+import { SelectionTypesMenuList } from "./mockData";
 
 interface MyDataComponentProps { }
 
@@ -99,8 +101,17 @@ export const MyData = ({ }: MyDataComponentProps) => {
           </div>
         </div>
 
-        <div className="filter-wrapper w-full mt-4 bg-grayblue-200">
-          Filters
+        <div className="filter-wrapper w-full mt-4">
+          {/* Selection Types : [All, None, Private, Public, Monetized, NonMonetized] */}
+          <CustomSelect
+            menuList={SelectionTypesMenuList}
+            buttonClassName="min-w-[160px] bg-grayblue-200 hover:bg-grayblue-300"
+            contentClassName="custom-popover-content"
+            align="start"
+            onChange={function (value: string): void {
+              console.log("Selection Type : ", value);
+            }}
+          />
         </div>
       </div>
 
