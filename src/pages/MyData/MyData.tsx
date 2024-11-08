@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
 import CustomSelect from "./components/CustomSelect";
-import { ActivityTypesMenuList, DataTypeMenuList, TimeRangeMenuList } from "./mockData";
+import { ActivityTypesMenuList, DataTypeMenuList, SearchResultsSummary, TimeRangeMenuList } from "./mockData";
 
 interface MyDataComponentProps { }
 
@@ -90,49 +90,63 @@ export const MyData = ({ }: MyDataComponentProps) => {
       </div>
     </div> */}
     <div className="w-full container mx-auto py-4 px-6 flex justify-between items-center mt-[72px] pt-12">
-      <div className="my-data-wrapper flex flex-col justify-start items-start w-full h-full">
-        {/* Search Bar */}
-        <div className="search-bar-wrapper w-full">
-          <div className="bg-white flex items-center justify-center px-4 py-1 pr-1 rounded-lg w-full">
-            <SearchIcon className="size-5" />
-            <Input
-              type="search"
-              placeholder="Search"
-              className="size-full border-none bg-transparent focus:outline-none font-inter text-sm"
+      <div className="my-data-wrapper flex flex-col justify-start items-start w-full h-full gap-[30px]">
+        <div className="flex flex-col justify-start items-start w-full gap-4">
+          {/* Search Bar */}
+          <div className="search-bar-wrapper w-full">
+            <div className="bg-white flex items-center justify-center px-4 py-1 pr-1 rounded-lg w-full">
+              <SearchIcon className="size-5" />
+              <Input
+                type="search"
+                placeholder="Search"
+                className="size-full border-none bg-transparent focus:outline-none font-inter text-sm"
+              />
+              <Button type="submit" className="bg-primary-btn-500 text-white">Search</Button>
+            </div>
+          </div>
+
+          {/* Filters wrapper */}
+          <div className="filter-wrapper w-full flex justify-start items-center gap-4">
+            <CustomSelect
+              menuList={DataTypeMenuList}
+              buttonClassName="min-w-[150px] bg-transparent border border-grayblue-300 hover:bg-grayblue-200"
+              contentClassName=""
+              align="start"
+              placeholder="Data Type"
+              onChange={(value) => console.log('Selected Data Type : ', value)}
+              disabled={isResultsLoading}
             />
-            <Button type="submit" className="bg-primary-btn-500 text-white">Search</Button>
+            <CustomSelect
+              menuList={ActivityTypesMenuList}
+              buttonClassName="min-w-[150px] bg-transparent border border-grayblue-300 hover:bg-grayblue-200"
+              contentClassName=""
+              align="start"
+              placeholder="Activity Type"
+              onChange={(value) => console.log('Selected Data Type : ', value)}
+              disabled={isResultsLoading}
+            />
+            <CustomSelect
+              menuList={TimeRangeMenuList}
+              buttonClassName="min-w-[150px] bg-transparent border border-grayblue-300 hover:bg-grayblue-200"
+              contentClassName=""
+              align="start"
+              placeholder="Time Range"
+              onChange={(value) => console.log('Selected Data Type : ', value)}
+              disabled={isResultsLoading}
+            />
           </div>
         </div>
 
-        {/* Filters wrapper */}
-        <div className="filter-wrapper w-full mt-4 flex justify-start items-center gap-4">
-          <CustomSelect
-            menuList={DataTypeMenuList}
-            buttonClassName="min-w-[150px] bg-transparent border border-grayblue-300 hover:bg-grayblue-200"
-            contentClassName=""
-            align="start"
-            placeholder="Data Type"
-            onChange={(value) => console.log('Selected Data Type : ', value)}
-            disabled={isResultsLoading}
-          />
-          <CustomSelect
-            menuList={ActivityTypesMenuList}
-            buttonClassName="min-w-[150px] bg-transparent border border-grayblue-300 hover:bg-grayblue-200"
-            contentClassName=""
-            align="start"
-            placeholder="Activity Type"
-            onChange={(value) => console.log('Selected Data Type : ', value)}
-            disabled={isResultsLoading}
-          />
-          <CustomSelect
-            menuList={TimeRangeMenuList}
-            buttonClassName="min-w-[150px] bg-transparent border border-grayblue-300 hover:bg-grayblue-200"
-            contentClassName=""
-            align="start"
-            placeholder="Time Range"
-            onChange={(value) => console.log('Selected Data Type : ', value)}
-            disabled={isResultsLoading}
-          />
+        {/* Summary of Result Data */}
+        <div className="w-full bg-grayblue-200 p-[20px] rounded-[14px] h-fit">
+          <h2 className="font-inter font-semibold text-2xl mb-2">Summary</h2>
+          <ul className="font-inter font-normal text-base list-disc ml-5">
+            {SearchResultsSummary.map((summaryItem, index) => {
+              return (
+                <li key={index}>{summaryItem}</li>
+              );
+            })}
+          </ul>
         </div>
       </div>
 

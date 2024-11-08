@@ -1,4 +1,4 @@
-import { MenuItemType } from "./components/CustomSelect";
+import { MenuItemType, SearchSummary } from "./interfaces";
 
 export const DataTypeMenuList: MenuItemType[] = [
   {
@@ -50,3 +50,10 @@ export const ActivityTypesMenuList: MenuItemType[] = [
   { value: "Travel", label: "Travel" },
   { value: "Blogging", label: "Blogging" },
 ];
+
+export const SearchResultsSummary: SearchSummary = [
+  'Computer programmer.',
+  'A well-known job that involves writing computer programs, testing software, and troubleshooting.',
+  'Data scientist.',
+  'A trending job that involves analyzing large amounts of data.'
+]

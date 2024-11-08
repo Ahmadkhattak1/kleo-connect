@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
@@ -7,11 +7,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
-
-export interface MenuItemType {
-  value: string;
-  label: string;
-}
+import { MenuItemType } from '../interfaces';
 
 export interface CustomSelectProps {
   menuList: MenuItemType[];
