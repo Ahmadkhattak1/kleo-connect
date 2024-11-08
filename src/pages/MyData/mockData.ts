@@ -1,14 +1,6 @@
 import { MenuItemType } from "./components/CustomSelect";
 
-export const SelectionTypesMenuList: MenuItemType[] = [
-  {
-    label: 'All',
-    value: 'all'
-  },
-  {
-    label: 'None',
-    value: 'none'
-  },
+export const DataTypeMenuList: MenuItemType[] = [
   {
     label: 'Private',
     value: 'private'
@@ -24,21 +16,6 @@ export const SelectionTypesMenuList: MenuItemType[] = [
   {
     label: 'Non-Monetized',
     value: 'nonMonetized'
-  },
-]
-
-export const DataTypeMenuList: MenuItemType[] = [
-  {
-    label: 'JSON',
-    value: 'json'
-  },
-  {
-    label: 'RAW',
-    value: 'raw'
-  },
-  {
-    label: 'IMAGE',
-    value: 'image'
   },
 ]
 
@@ -60,3 +37,16 @@ export const TimeRangeMenuList: MenuItemType[] = [
     value: 'lastYear'
   },
 ]
+
+export const ActivityTypesMenuList: MenuItemType[] = [
+  { value: "Cryptocurrency", label: "Cryptocurrency" },
+  { value: "Comedy", label: "Comedy" },
+  { value: "Gaming", label: "Gaming" },
+  { value: "Fitness", label: "Fitness" },
+  { value: "Photography", label: "Photography" },
+  { value: "Fashion", label: "Fashion" },
+  { value: "Music", label: "Music" },
+  { value: "Movies", label: "Movies" },
+  { value: "Travel", label: "Travel" },
+  { value: "Blogging", label: "Blogging" },
+];

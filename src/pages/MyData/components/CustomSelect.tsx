@@ -66,7 +66,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
           align={align}
           sideOffset={8}
           className={cn(
-            "absolute z-10 w-[200px] p-0 max-h-48 overflow-y-auto bg-white shadow-md",
+            "absolute z-10 w-max p-0 max-h-48 overflow-y-auto bg-white shadow-md",
             contentClassName,
           )}
         >
@@ -82,7 +82,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
               {menuItem.label}
               <Check
                 className={cn(
-                  "ml-auto",
+                  "ml-2",
                   selectedMenuItem?.value === menuItem.value ? "opacity-100" : "opacity-0"
                 )}
               />
