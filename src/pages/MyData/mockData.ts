@@ -2,6 +2,10 @@ import { MenuItemType, SearchResult, SearchSummary } from "./interfaces";
 
 export const DataTypeMenuList: MenuItemType[] = [
   {
+    label: 'All',
+    value: 'all'
+  },
+  {
     label: 'Private',
     value: 'private'
   },

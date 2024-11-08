@@ -113,6 +113,7 @@ export const MyData = ({ }: MyDataComponentProps) => {
               menuList={DataTypeMenuList}
               buttonClassName="min-w-[150px] bg-transparent border border-grayblue-300 hover:bg-grayblue-200"
               contentClassName=""
+              value="all"
               align="start"
               placeholder="Data Type"
               onChange={(value) => console.log('Selected Data Type : ', value)}
