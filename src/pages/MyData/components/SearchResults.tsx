@@ -117,9 +117,6 @@ export const SearchResults = ({ }: SearchResultsProps) => {
           <div className="w-px h-6 bg-gray-300" />
           <div className="flex bg-grayblue-200 rounded-lg">
             <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
-              <Trash2 />
-            </Button>
-            <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
               <Lock />
             </Button>
             <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
@@ -130,6 +127,9 @@ export const SearchResults = ({ }: SearchResultsProps) => {
             </Button>
             <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
               <Gift />
+            </Button>
+            <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
+              <Trash2 />
             </Button>
           </div>
         </div>
