@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { SearchResultsList } from "../mockData";
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from "@/components/ui/button";
-import { Trash2, Lock, Unlock, CircleDollarSign, Gift } from "lucide-react";
+import { Trash2, Lock, Unlock, CircleDollarSign, Gift, Globe } from "lucide-react"; // Add the Globe icon here
 
 interface SearchResultsProps { }
 
@@ -10,6 +10,7 @@ export const SearchResults = ({ }: SearchResultsProps) => {
   const [searchResults, setSearchResults] = useState(SearchResultsList);
   const [selectAll, setSelectAll] = useState(false);
   const [selectedCount, setSelectedCount] = useState(0);
+  const [faviconFailed, setFaviconFailed] = useState<Record<number, boolean>>({}); // Track failed favicon loads
 
   useEffect(
     () => setSelectedCount(searchResults.filter((item) => item.isSelected).length)
@@ -30,15 +31,28 @@ export const SearchResults = ({ }: SearchResultsProps) => {
 
   // Handle individual item selection
   const handleSelectSearchResult = (id: number) => {
-    const updatedSearchResults = searchResults.map((job) => {
-      if (job.id === id) {
-        return { ...job, isSelected: !job.isSelected };
+    const updatedSearchResults = searchResults.map((item) => {
+      if (item.id === id) {
+        return { ...item, isSelected: !item.isSelected };
       }
-      return job;
+      return item;
     });
     setSearchResults(updatedSearchResults);
     setSelectedCount(updatedSearchResults.filter((job) => job.isSelected).length);
     setSelectAll(updatedSearchResults.every((job) => job.isSelected));
+  };
+
+  const getFaviconUrl = (url: string | undefined) => {
+    try {
+      const websiteUrl = new URL(url!);
+      return `${websiteUrl.origin}/favicon.ico`;
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const handleFaviconError = (id: number) => {
+    setFaviconFailed((prevState) => ({ ...prevState, [id]: true }));
   };
 
   return (
@@ -88,8 +102,17 @@ export const SearchResults = ({ }: SearchResultsProps) => {
             className={`flex p-4 bg-white rounded-lg shadow-sm items-center justify-between gap-6`}
           >
             <div className="flex items-center justify-start flex-1 gap-4">
-              <div className="h-[50px] w-[50px] bg-[#EAECF5] rounded-lg">
-                {/* Add favicon here */}
+              <div className="h-[50px] w-[50px] bg-[#EAECF5] rounded-lg flex items-center justify-center">
+                {faviconFailed[searchResult.id] ? (
+                  <Globe className="h-6 w-6 text-gray-700" /> // Show Globe icon if favicon failed
+                ) : (
+                  <img
+                    src={getFaviconUrl(searchResult.referenceUrl) || ''}
+                    alt="Website icon"
+                    className="h-full w-full rounded-md"
+                    onError={() => handleFaviconError(searchResult.id)} // Fallback to Globe on error
+                  />
+                )}
               </div>
               <div className="flex flex-col justify-between items-start font-inter font-normal">
                 <div className="flex justify-start items-center gap-2">

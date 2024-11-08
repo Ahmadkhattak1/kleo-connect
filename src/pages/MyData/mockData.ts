@@ -71,7 +71,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: true,
     isMonetised: true,
     isPublic: true,
-    icon: 'https://www.dribble.com/favicon.ico',
   },
   {
     id: 2,
@@ -81,7 +80,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: true,
     isMonetised: false,
     isPublic: true,
-    icon: 'https://www.xyz.com/favicon.ico',
   },
   {
     id: 3,
@@ -91,7 +89,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    icon: 'https://www.abc.com/favicon.ico',
   },
   {
     id: 4,
@@ -101,7 +98,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    icon: 'https://www.devopsjobs.com/favicon.ico',
   },
   {
     id: 5,
@@ -111,7 +107,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    icon: 'https://www.mobiledev.com/favicon.ico',
   },
   {
     id: 6,
@@ -121,7 +116,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    icon: 'https://www.datasciencejobs.com/favicon.ico',
   },
   {
     id: 7,
@@ -131,7 +125,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: false,
-    icon: 'https://www.producthunt.com/favicon.ico',
   },
   {
     id: 8,
@@ -141,7 +134,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    icon: 'https://www.designerjobs.com/favicon.ico',
   },
   {
     id: 9,
@@ -151,7 +143,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    icon: 'https://www.cyberjobs.com/favicon.ico',
   },
   {
     id: 10,
@@ -161,7 +152,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    icon: 'https://www.cloudjobs.com/favicon.ico',
   },
   {
     id: 11,
@@ -171,7 +161,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    icon: 'https://www.mljobs.com/favicon.ico',
   },
   {
     id: 12,
@@ -181,7 +170,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    icon: 'https://www.techwriterjobs.com/favicon.ico',
   },
   {
     id: 13,
@@ -191,7 +179,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    icon: 'https://www.qajobs.com/favicon.ico',
   },
   {
     id: 14,
@@ -201,7 +188,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    icon: 'https://www.sysadminjobs.com/favicon.ico',
   },
   {
     id: 15,
@@ -211,7 +197,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    icon: 'https://www.salesforcejobs.com/favicon.ico',
   },
   {
     id: 16,
@@ -221,7 +206,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    icon: 'https://www.gamedevs.com/favicon.ico',
   },
   {
     id: 17,
@@ -231,7 +215,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: false,
-    icon: 'https://www.blockchainjobs.com/favicon.ico',
   },
   {
     id: 18,
@@ -241,7 +224,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    icon: 'https://www.ecommercejobs.com/favicon.ico',
   },
   {
     id: 19,
@@ -251,7 +233,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    icon: 'https://www.itsupportjobs.com/favicon.ico',
   },
   {
     id: 20,
@@ -261,7 +242,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    icon: 'https://www.seojobs.com/favicon.ico',
   },
   {
     id: 21,
@@ -271,7 +251,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    icon: 'https://www.contentjobs.com/favicon.ico',
   },
   {
     id: 22,
@@ -281,7 +260,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    icon: 'https://www.businessanalystjobs.com/favicon.ico',
   },
   {
     id: 23,
@@ -291,7 +269,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    icon: 'https://www.marketingjobs.com/favicon.ico',
   },
   {
     id: 24,
@@ -301,7 +278,6 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: true,
     isPublic: true,
-    icon: 'https://www.financejobs.com/favicon.ico',
   },
   {
     id: 25,
@@ -311,6 +287,5 @@ export const SearchResultsList: SearchResult[] = [
     isSelected: false,
     isMonetised: false,
     isPublic: true,
-    icon: 'https://www.customersuccessjobs.com/favicon.ico',
   },
 ]
