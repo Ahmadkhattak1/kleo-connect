@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
 import CustomSelect from "./components/CustomSelect";
 import { ActivityTypesMenuList, DataTypeMenuList, SearchResultsSummary, TimeRangeMenuList } from "./mockData";
+import { SearchResults } from "./components/SearchResults";
 
 interface MyDataComponentProps { }
 
@@ -91,6 +92,7 @@ export const MyData = ({ }: MyDataComponentProps) => {
     </div> */}
     <div className="w-full container mx-auto py-4 px-6 flex justify-between items-center mt-[72px] pt-12">
       <div className="my-data-wrapper flex flex-col justify-start items-start w-full h-full gap-[30px]">
+        {/* SearchBar + Filters */}
         <div className="flex flex-col justify-start items-start w-full gap-4">
           {/* Search Bar */}
           <div className="search-bar-wrapper w-full">
@@ -148,8 +150,10 @@ export const MyData = ({ }: MyDataComponentProps) => {
             })}
           </ul>
         </div>
-      </div>
 
+        {/* Search Results Title + Actions */}
+        <SearchResults />
+      </div>
     </div>
   </div>
 }

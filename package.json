@@ -18,6 +18,7 @@
     "@irys/sdk": "^0.1.21",
     "@metamask/detect-provider": "^2.0.0",
     "@metamask/jazzicon": "^2.0.0",
+    "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-popover": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.0",
     "@react-google-maps/api": "^2.19.3",
