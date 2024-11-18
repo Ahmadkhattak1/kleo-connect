@@ -136,7 +136,7 @@ export const SearchResults = ({ }: SearchResultsProps) => {
               </Tooltip>
 
               {/* Unlock Button */}
-              <Tooltip>
+              {/* <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
                     <Unlock />
@@ -145,7 +145,7 @@ export const SearchResults = ({ }: SearchResultsProps) => {
                 <TooltipContent className="bg-white">
                   <p>Public</p>
                 </TooltipContent>
-              </Tooltip>
+              </Tooltip> */}
 
               {/* CircleDollarSign Button */}
               <Tooltip>
@@ -160,7 +160,7 @@ export const SearchResults = ({ }: SearchResultsProps) => {
               </Tooltip>
 
               {/* Gift Button */}
-              <Tooltip>
+              {/* <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="ghost" disabled={selectedCount === 0} size="icon" className="hover:bg-grayblue-300">
                     <Gift />
@@ -169,7 +169,7 @@ export const SearchResults = ({ }: SearchResultsProps) => {
                 <TooltipContent className="bg-white">
                   <p>De Monetize</p>
                 </TooltipContent>
-              </Tooltip>
+              </Tooltip> */}
 
               {/* Trash2 Button */}
               <Tooltip>
