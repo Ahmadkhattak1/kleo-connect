@@ -10,6 +10,7 @@ import { MyData } from './pages/profile/components/MyData'
 import useFetch from './common/hooks/useFetch'
 function App(): ReactElement {
   const emptyStringArray: string[] = []
+  const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [user, setUser] = useState<UserData>({
     about: '',
@@ -31,6 +32,12 @@ function App(): ReactElement {
   const GET_USER_API = 'user/get-user/{address}'
   const { fetchData: fetchUser, data: userDataFromDB } = useFetch<UserData>()
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token); // Update isLoggedIn based on token presence
+    setIsLoading(false); // Mark loading as complete
+  }, []);
+
   function makeUserUpdationUrl(address_string: string): string {
     const address = localStorage.getItem('address') || ''
     return address_string.replace('{address}', address)
@@ -49,17 +56,15 @@ function App(): ReactElement {
         }
       }
     })
-    setIsLoggedIn(!!token) // Convert token to boolean (truthy/falsy)
+    setIsLoggedIn(!!token); // Set isLoggedIn based on token presence
+    setIsLoading(false); // Indicate loading is complete
   }, []) // Empty dependency array: run only on initial render
 
-  const handleLogout = () => {
-    localStorage.removeItem('token')
-    sessionStorage.clear()
-    setIsLoggedIn(false) // Update state immediately
+  if (isLoading) {
+    return <div className='h-screen w-screen flex justify-center items-center'><div className="w-8 h-8 border-4 border-t-4 border-gray-200 border-t-purple-500 rounded-full animate-spin"></div></div>;
   }
 
   return (
-
     <div className="h-full w-full">
       <div className="flex flex-col font-inter self-stretch h-full">
         {/* {isLoggedIn && (
