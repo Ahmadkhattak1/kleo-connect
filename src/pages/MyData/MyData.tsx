@@ -1,7 +1,7 @@
 import Navbar, { PAGE_NAMES } from "../../common/components/Navbar";
 import { ReactComponent as SpaceCat } from '../../../assets/myData/spaceCat.svg';
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
@@ -13,6 +13,7 @@ interface MyDataComponentProps { }
 
 export const MyData = ({ }: MyDataComponentProps) => {
   // --------------- Validate UserAddress Logic --------------- //
+  const { address: urlAddress } = useParams<{ address: string }>(); // Extract the address from the URL
   const [userAddress, setUserAddress] = useState<string | null>(localStorage.getItem('address'));
   const [isKleoConnectReady, setIsKleoConnectReady] = useState(false);
   const navigate = useNavigate();
@@ -42,9 +43,6 @@ export const MyData = ({ }: MyDataComponentProps) => {
 
     const validateAddresses = async () => {
       try {
-        const pathname = window.location.pathname;
-        let urlAddress = pathname.split('/profile/')[1]; // Address from URL
-        urlAddress = String(userAddress).replace('/', '');
         const localStorageAddress = localStorage.getItem('address');
 
         // Call signIn to get the address from the extension
@@ -68,7 +66,7 @@ export const MyData = ({ }: MyDataComponentProps) => {
     };
 
     validateAddresses(); // Call the validation function
-  }, [isKleoConnectReady]);
+  }, [isKleoConnectReady, urlAddress]); // Re-run when URL changes
 
   // --------------- END: Validate UserAddress Logic --------------- //
 
