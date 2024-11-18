@@ -18,7 +18,7 @@ import Privacy from './components/Privacy'
 import LeaderBoardBanner from './components/LeaderBoardBanner'
 import Navbar, { PAGE_NAMES } from '../../common/components/Navbar'
 import { Method } from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../../common/hooks/useFetch'
 
 interface UserGraphResponse {
@@ -50,6 +50,8 @@ ChartJS.register(
 )
 
 function Profile() {
+  // --------------- Validate UserAddress Logic --------------- //
+  const { address: urlAddress } = useParams<{ address: string }>(); // Extract the address from the URL
   const [userAddress, setUserAddress] = useState<string | null>(localStorage.getItem('address'));
   const [isKleoConnectReady, setIsKleoConnectReady] = useState(false);
   const navigate = useNavigate();
@@ -79,9 +81,6 @@ function Profile() {
 
     const validateAddresses = async () => {
       try {
-        const pathname = window.location.pathname;
-        let urlAddress = pathname.split('/profile/')[1]; // Address from URL
-        urlAddress = String(userAddress).replace('/', '');
         const localStorageAddress = localStorage.getItem('address');
 
         // Call signIn to get the address from the extension
@@ -105,7 +104,9 @@ function Profile() {
     };
 
     validateAddresses(); // Call the validation function
-  }, [isKleoConnectReady]);
+  }, [isKleoConnectReady, urlAddress]); // Re-run when URL changes
+
+  // --------------- END: Validate UserAddress Logic --------------- //
 
   const GET_USER_PATH = `user/get-user/${userAddress}`;
   const UPLOAD_IMGUR_ENDPOINT = 'user/upload_activity_chart';
