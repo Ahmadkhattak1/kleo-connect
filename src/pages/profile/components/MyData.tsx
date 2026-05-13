@@ -14,13 +14,13 @@ export const MyData = () => {
   useEffect(() => {
     const checkKleoConnect = () => {
       // Poll for the availability of window.kleoConnect
-      if ((window as any).kleoConnect) {
+      if (window.kleoConnect) {
         setIsKleoConnectReady(true)
-        console.log('kleoConnect is ready:', (window as any).kleoConnect)
+        console.log('kleoConnect is ready:', window.kleoConnect)
 
         // Assign signIn method if not already assigned
-        if (!(window as any).signIn) {
-          ;(window as any).signIn = (window as any).kleoConnect.signIn
+        if (!window.signIn && window.kleoConnect.signIn) {
+          window.signIn = window.kleoConnect.signIn
         }
       } else {
         console.log('Waiting for kleoConnect...')
@@ -42,7 +42,10 @@ export const MyData = () => {
         const localStorageAddress = localStorage.getItem('address')
 
         // Call signIn to get the address from the extension
-        const result = await (window as any).signIn()
+        if (!window.signIn) {
+          throw new Error('Kleo sign in is unavailable')
+        }
+        const result = await window.signIn()
         const extensionAddress = result.address
 
         // Check if all three addresses match

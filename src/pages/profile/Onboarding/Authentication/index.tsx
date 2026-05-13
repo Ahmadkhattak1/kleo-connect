@@ -20,7 +20,7 @@ export default function Onboarding() {
     if (pluginState === PluginState.CHECKING) {
       setTimeout(() => {
         // Check if plugin (kleoConnect) is installed
-        if ((window as any).kleoConnect) {
+        if (window.kleoConnect) {
           setPluginState(PluginState.INSTALLED)
         } else {
           setPluginState(PluginState.NOT_INSTALLED)
@@ -31,7 +31,10 @@ export default function Onboarding() {
 
   // Handle user login when Sign In button is clicked
   const handleUserLogin = async () => {
-    const result = await (window as any).signIn()
+    if (!window.signIn) {
+      return
+    }
+    const result = await window.signIn()
     localStorage.setItem('address', result.address)
     localStorage.setItem('token', result.token)
     setLogin(true)

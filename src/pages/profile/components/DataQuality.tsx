@@ -68,7 +68,7 @@ export const RadarChartData = {
 interface DataQualityProps {
   isLoading: boolean
   isProcessing: boolean
-  graphData: any
+  graphData: GraphLabelItem[] | null
   userKleoPoints: number
   highestKleoPoints: number
 }
@@ -107,13 +107,11 @@ const DataQuality = ({
     if (graphData && graphData.length > 0) {
       setRadarChartData((prevState) => ({
         ...prevState,
-        labels: graphData.map((item: GraphLabelItem) => item.label),
+        labels: graphData.map((item) => item.label),
         datasets: [
           {
             ...prevState.datasets[0],
-            data: graphData.map((item: GraphLabelItem) =>
-              Math.round(item.percentage)
-            )
+            data: graphData.map((item) => Math.round(item.percentage))
           }
         ]
       }))

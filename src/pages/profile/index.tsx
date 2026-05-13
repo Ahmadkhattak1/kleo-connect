@@ -35,7 +35,13 @@ interface GraphLabelItem {
 interface UploadResponse {
   url?: string
   error?: string
-  // Add other fields as needed
+}
+
+interface UserProfileData {
+  kleo_points?: number
+  total_data_quantity?: number
+  milestones?: Record<string, number | boolean>
+  pii_removed_count?: number
 }
 
 type CanvasSource = HTMLCanvasElement | HTMLImageElement
@@ -61,13 +67,13 @@ function Profile() {
   useEffect(() => {
     const checkKleoConnect = () => {
       // Poll for the availability of window.kleoConnect
-      if ((window as any).kleoConnect) {
+      if (window.kleoConnect) {
         setIsKleoConnectReady(true)
-        console.log('kleoConnect is ready:', (window as any).kleoConnect)
+        console.log('kleoConnect is ready:', window.kleoConnect)
 
         // Assign signIn method if not already assigned
-        if (!(window as any).signIn) {
-          ;(window as any).signIn = (window as any).kleoConnect.signIn
+        if (!window.signIn && window.kleoConnect.signIn) {
+          window.signIn = window.kleoConnect.signIn
         }
       } else {
         console.log('Waiting for kleoConnect...')
@@ -86,7 +92,10 @@ function Profile() {
         const localStorageAddress = localStorage.getItem('address')
 
         // Call signIn to get the address from the extension
-        const result = await (window as any).signIn()
+        if (!window.signIn) {
+          throw new Error('Kleo sign in is unavailable')
+        }
+        const result = await window.signIn()
         const extensionAddress = result.address
 
         // Check if all three addresses match
@@ -116,8 +125,8 @@ function Profile() {
   // const GET_USER_GRAPH = `user/get-user-graph/${'0xC0cFAB5AFc7a951c510eA20DDD1eCCA31731e574'}`;
 
   // State for storing the user data
-  const [userData, setUserData] = useState<any>(null)
-  useFetch(GET_USER_PATH, {
+  const [userData, setUserData] = useState<UserProfileData | null>(null)
+  useFetch<UserProfileData>(GET_USER_PATH, {
     onSuccessfulFetch: (fetchedData) => {
       console.log('Fetched User Data:', fetchedData)
       setUserData(fetchedData)
@@ -125,11 +134,11 @@ function Profile() {
   })
   const { fetchData: fetchUserGraph, error: graphError } =
     useFetch<UserGraphResponse>()
-  const [graphData, setGraphData] = useState<any>([])
+  const [graphData, setGraphData] = useState<GraphLabelItem[]>([])
   const [isProcessing, setIsProcessing] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [highestKleoPoints, setHighestKleoPoints] = useState(0)
-  const { fetchData: uploadImageFetch } = useFetch<any>()
+  const { fetchData: uploadImageFetch } = useFetch<UploadResponse>()
 
   // Define the ref with the type of an HTMLDivElement
   const milestonesRef = useRef<HTMLDivElement | null>(null)
@@ -154,7 +163,7 @@ function Profile() {
   const constructTweetText = (imageUrl: string): string => {
     const top3Activities = graphData
       .slice(0, 3)
-      .map((activity: { label: any }) => activity.label)
+      .map((activity) => activity.label)
       .join(', ')
     return `Check out my Activity! My top 3 activities are ${top3Activities}. My current kleo points are ${
       userData.kleo_points || 0
@@ -226,7 +235,7 @@ Create your profile and get Kleo points! @kleo_network #KLEO ${imageUrl}`
           } else {
             setIsProcessing(false)
             if (graphData) {
-              setGraphData(data?.data)
+              setGraphData(data?.data || [])
               console.log('Data : ', data)
             }
           }
@@ -241,7 +250,7 @@ Create your profile and get Kleo points! @kleo_network #KLEO ${imageUrl}`
     if (graphError) {
       setIsProcessing(true)
       setIsLoading(false)
-      setGraphData(null)
+      setGraphData([])
     }
   }, [graphError])
 
